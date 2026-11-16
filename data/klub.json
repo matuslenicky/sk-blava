@@ -1,0 +1,88 @@
+{
+  "_zdroj": "Ručne zapísané len zo zverejnených zdrojov (uvedené pri každej časti). Nič nedopĺňať odhadom – chýbajúce údaje dodá klub.",
+  "nazov": "ŠK Blava 1928",
+  "kratky": "ŠK Blava",
+  "pravnyNazov": "Športové kluby Blava 1928 Jaslovské Bohunice",
+  "mesto": "Jaslovské Bohunice",
+  "zalozenie": 1928,
+  "adresa": ["Nová 340/1", "919 30 Jaslovské Bohunice"],
+  "ico": "42297869",
+  "dic": "2024120846",
+  "ucet": "Prima banka Slovensko, a.s., pobočka Trnava, č. ú. 1169653001/5600",
+  "_kontakt": "starý web skblava.sk – Kontakt, Výkonný výbor FK",
+  "kontakt": {
+    "osoba": "Mgr. Marek Juhász",
+    "funkcia": "predseda futbalového klubu",
+    "telefon": "+421 905 623 988",
+    "email": "futbal@skblava.sk"
+  },
+  "hospodar": { "osoba": "Peter Furda", "funkcia": "hospodár športového areálu", "telefon": "+421 948 031 128" },
+  "spravnaRada": {
+    "_zdroj": "starý web – Správna rada ŠK Blava; článok o konferencii 2024",
+    "prezident": "Ing. Martin Junas",
+    "sekretar": "Ing. Ľuboš Bokor"
+  },
+  "facebook": "https://www.facebook.com/www.skblava.sk/",
+  "_facebook": "odkaz z päty starého webu; Instagram klubu sa nenašiel (16. 11. 2026)",
+  "sportnetUrl": "https://sportnet.sme.sk/futbalnet/k/sportove-kluby-blava-1928/",
+  "staryWeb": "https://www.skblava.sk/",
+  "hymnaMp3": "https://www.skblava.sk/wp-content/uploads/2017/01/hymna.mp3",
+  "hymna": {
+    "_zdroj": "starý web – Hymna klubu (text bez zmeny, malé písmená)",
+    "url": "https://www.skblava.sk/o-nas/hymna-klubu/",
+    "zaciatok": ["Nie sme Real Madrid a nie sme Liverpool,", "za nás si Maradona kopačky neobul.", "Zdáme sa vám malí, ale my vieme, čo je boj."],
+    "refren": ["Š! – K! – ŠK Blava! Víťazstvo vždy sladkú chuť máva.", "Š! – K! – ŠK Blava! Hrdosť, česť a večná sláva.", "Š! – K! – ŠK Blava! Modré nebo a zelená tráva.", "Š! – K! – ŠK Blava! Sme pre teba zrodení!"],
+    "koniec": ["Š! – K! – ŠK Blava! Malý potok, ale silná riava.", "Š! – K! – ŠK Blava! Hoci sa to zdá, nie sme Bratislava!"]
+  },
+  "stadion": {
+    "_zdroj": "Sportnet – údaje ihriska zo zápisu o stretnutí (ulica, rozmery, poloha); kapacitu zdroje uvádzajú rozdielne (Wikipédia sk 5 000, en 2 000) – neuvádza sa",
+    "nazov": "Štadión ŠK Blava",
+    "adresa": ["Sidúnky", "919 30 Jaslovské Bohunice"],
+    "rozmery": "105 × 68 m",
+    "geo": [48.4764738, 17.6448851],
+    "sportoviska": "športové haly, telocvičňa, posilňovňa, tenisové kurty a umelý trávnik",
+    "_sportoviska": "starý web – Prenájom športovísk",
+    "rezervacie": "https://services.bookio.com/tenisove-kurty-obec-jaslovske-bohunice/widget?lang=sk",
+    "cennik": "https://www.jaslovske-bohunice.sk/zivot-v-obci/sport/sportoviska/cennik-sportovisk/",
+    "sienSlavy": "V sieni slávy na štadióne sa konajú konferencie ŠK Blava 1928.",
+    "_sienSlavy": "článok Činnosť ŠK Blava 1928 a poďakovanie za podporu (2024)"
+  },
+  "historia": [
+    { "rok": "1924 – 1925", "text": "Do obcí sa dostali prvé vzduchom plnené lopty. Predtým školáci kopali do lôpt urobených z handier.", "zdroj": "starý web – História" },
+    { "rok": "1927", "text": "Pri bohunickom kostole sa uskutočnil prvý futbalový zápas. Neskôr sa hrávalo v Jaslovciach na Barine.", "zdroj": "starý web – História" },
+    { "rok": "1928", "text": "Začiatok organizovaného športu v obci: Blavania mali skutočné futbalové mužstvo, ktoré za rok odohralo 15 zápasov s mužstvami okolitých dedín. Hrali v bielych dresoch so zeleným pruhom na prsiach.", "zdroj": "starý web – História" },
+    { "rok": "1932", "text": "Hráči nastupujú v bielo-zelených dresoch s nápisom ŠK Blava.", "zdroj": "starý web – História" },
+    { "rok": "", "text": "Klub hral aj pod názvom TJ Blava Jaslovské Bohunice, dnes sú to Športové kluby Blava 1928. Klubové farby sú modrá a žltá.", "zdroj": "Wikipédia: ŠK Blava Jaslovské Bohunice" },
+    { "rok": "2024", "text": "V 1. kole Slovnaft Cupu prišiel 11. septembra do Jaslovských Bohuníc prvoligový FC Spartak Trnava. Zápas, ktorý hostia vyhrali 2:0, sledovalo 1 600 divákov.", "zdroj": "Wikipédia (en) podľa Šport.sk, 11. 9. 2024" },
+    { "rok": "2024", "text": "Tenisové družstvo mužov TK ŠK Blava 1928 vyhralo extraligu – historický úspech klubu.", "zdroj": "starý web – Činnosť ŠK Blava 1928 (2024)" },
+    { "rok": "2025/26", "text": "Muži skončili vo IV. lige na 7. mieste.", "zdroj": "Wikipédia: ŠK Blava Jaslovské Bohunice" }
+  ],
+  "vyrocia": [
+    { "nazov": "Noviny k 80. výročiu organizovaného športu v Jaslovských Bohuniciach", "url": "https://www.skblava.sk/o-nas/historia-2/" },
+    { "nazov": "Brožúra k 90. výročiu organizovaného športu v Jaslovských Bohuniciach", "url": "https://www.skblava.sk/o-nas/historia-2/" }
+  ],
+  "bulletin": { "url": "https://www.skblava.sk/o-nas/o-nas-bulletin/", "text": "Archív klubového bulletinu (ročníky XV – XXII) v PDF na starom webe." },
+  "kluby": {
+    "_zdroj": "starý web – Športové kluby; článok o činnosti 2024",
+    "zoznam": [
+      { "nazov": "Futbal", "text": "Muži vo IV. lige, dorast, žiaci a prípravka." },
+      { "nazov": "Tenis", "text": "Družstvo mužov vyhralo v roku 2024 extraligu, deti hrajú turnaje aj súťaže družstiev.", "url": "https://www.facebook.com/Tenisov%C3%BD-klub-%C5%A0K-Blava-1928-595457957481050/" },
+      { "nazov": "Stolný tenis", "text": "Štyri družstvá v súťažiach." },
+      { "nazov": "Silový trojboj", "text": "B.A.S.T. klub, trénujú mladí chalani aj dievča." },
+      { "nazov": "Futbaloví veteráni", "text": "Zápasy doma aj vonku s osvedčenými súpermi." },
+      { "nazov": "Šípky", "text": "D.A.R.T.S. klub v areáli kasární, najmladší klub ŠK Blava." },
+      { "nazov": "Vodáctvo a turistika", "text": "Výstupy a túry, pomoc pri obecných akciách." },
+      { "nazov": "Tenisoví amatéri", "text": "Rekreačný tenis." }
+    ]
+  },
+  "sutaze": {
+    "_pozn": "čitateľné názvy súťaží namiesto názvov so sponzormi zo Sportnetu",
+    "Majstrovstvá regiónu - IV. liga Macron | yoursport ZsFZ": "IV. liga",
+    "IV. liga U19 Macron | yoursport ZsFZ": "IV. liga U19 ZsFZ",
+    "IV. liga-Žiaci-U15-ObFZ TT": "IV. liga U15 ObFZ Trnava",
+    "IV. liga-MŽ-U13-sk.B-ObFZ TT": "IV. liga U13 ObFZ Trnava",
+    "Prípravka-U11-sk.B-ObFZ TT": "Prípravka U11 ObFZ Trnava",
+    "Prípravka-U9-ObFZ TT": "Prípravka U9 ObFZ Trnava",
+    "Slovnaft Cup": "Slovnaft Cup"
+  }
+}
