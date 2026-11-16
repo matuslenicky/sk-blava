@@ -20,7 +20,8 @@ const select = (tab, focus = false) => {
     t.tabIndex = on ? 0 : -1;
     document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
   });
-  if (focus) tab.focus();
+  // focus() neposunie pás záložiek, keď je záložka viditeľná len kúskom (End, šípka z prvej na poslednú)
+  if (focus) { tab.focus({ preventScroll: true }); tab.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
 };
 tabs.forEach((t, i) => {
   t.addEventListener('click', () => select(t));

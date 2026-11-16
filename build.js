@@ -50,6 +50,7 @@ const acc = (league) => league.replace(/\bliga\b/, 'ligu'); // 4. pád: hrajú I
 const tel = (n) => 'tel:' + n.replace(/\s+/g, '');
 const SEASON = sn.season.replace(/^(\d{4})\/\d\d(\d\d)$/, '$1/$2');
 const plural = (n, a, b, c) => `${n} ${n === 1 ? a : n >= 2 && n <= 4 ? b : c}`;
+const zo = (n) => `${/^(4|6|7|1[467]|[467]\d)$/.test(String(n)) ? 'zo' : 'z'} ${n}`; // „zo 16“, „z 11“ (podľa výslovnosti čísla)
 const num = (n) => Number(n).toLocaleString('sk-SK');
 
 // ---- súťaže, tímy, zápasy ------------------------------------------------------------------------
@@ -309,7 +310,7 @@ function tableHtml(tb, R, { compact = false, caption = '' } = {}) {
 }
 const formHtml = (slug, n = 5) => {
   const last = teamMatches(slug).filter((m) => m.res).slice(-n);
-  return last.length ? `<ol class="form" aria-label="Forma: posledných ${last.length} zápasov">${last.map((m) => `<li class="res-bg--${m.res}" title="${dShort(m.date)} ${esc(m.opponent)} ${m.score}"><span aria-hidden="true">${RES_S[m.res]}</span><span class="sr">${RES[m.res]} ${esc(m.opponent)} ${m.score}</span></li>`).join('')}</ol>` : '';
+  return last.length ? `<ol class="form" aria-label="Forma: ${last.length === 1 ? 'posledný zápas' : last.length <= 4 ? `posledné ${last.length} zápasy` : `posledných ${last.length} zápasov`}">${last.map((m) => `<li class="res-bg--${m.res}" title="${dShort(m.date)} ${esc(m.opponent)} ${m.score}"><span aria-hidden="true">${RES_S[m.res]}</span><span class="sr">${RES[m.res]} ${esc(m.opponent)} ${m.score}</span></li>`).join('')}</ol>` : '';
 };
 
 // kalendár zápasov (.ics): odber cez webcal/Google doplní site.mjs, inak stiahnutie
@@ -337,7 +338,7 @@ function teamGrid(R) {
   return GROUPS.map(([g, f]) => [g, teams.filter(f)]).filter(([, l]) => l.length).map(([g, l]) => `<section class="tgroup" aria-label="${g}"><h3 class="tgroup-h">${g}</h3><ul class="tgrid">${l.map((t) => `<li class="tcard${t.adult ? ' tcard--adult' : ''}"><a href="${R}${t.url}">
   <span class="tcard-n">${esc(t.short)}</span>
   <span class="tcard-l">${esc(t.leagueName)}</span>
-  ${t.pos ? `<span class="tcard-p"><b>${t.pos}.</b> z ${t.of}</span>` : '<span class="tcard-p">bez tabuľky</span>'}
+  ${t.pos ? `<span class="tcard-p"><b>${t.pos}.</b> ${zo(t.of)}</span>` : '<span class="tcard-p">bez tabuľky</span>'}
 </a></li>`).join('')}</ul></section>`).join('');
 }
 
@@ -350,7 +351,7 @@ const crewRole = { coach: 'Tréner', assist_coach: 'Asistent trénera', coach_go
 const POS = [['goalkeeper', 'Brankári'], ['defender', 'Obrancovia'], ['midfielder', 'Stredopoliari'], ['forward', 'Útočníci'], ['', 'Hráči']];
 
 // pás s pokrikom z hymny (na počítači pomaly plynie, pri obmedzenom pohybe stojí)
-const chant = () => `<div class="chant" aria-hidden="true"><p class="chant-in">${[...club.hymna.refren, ...club.hymna.koniec, ...club.hymna.refren].map((l) => `<span>${esc(l)}</span>`).join('')}</p></div>`;
+const chant = () => `<div class="chant" aria-hidden="true"><p class="chant-in">${[...club.hymna.refren, ...club.hymna.koniec, ...club.hymna.refren, ...club.hymna.koniec].map((l) => `<span>${esc(l)}</span>`).join('')}</p></div>`;
 
 // ďalšie kluby ŠK Blava (úvod, Klub)
 function clubsBand(R, full = false) {
@@ -396,7 +397,7 @@ add('', {
     <div class="hero-copy">
       <p class="eyebrow">Jaslovské Bohunice · od roku ${club.zalozenie}</p>
       <h1 class="hero-h" id="hero-h">Malý potok, <span class="hl">ale silná riava</span></h1>
-      <p class="hero-p">Tak spieva hymna ŠK Blava, pomenovaného po potoku, ktorý tečie obcou. Muži hrajú ${esc(acc(A.leagueName))}${A.pos ? ` a po jeseni sú na ${A.pos}. mieste` : ''}${best ? `, ${esc(best.full)} ${best.pos <= 3 ? `je ${best.pos}.` : `je na ${best.pos}. mieste`} vo svojej súťaži` : ''}.</p>
+      <p class="hero-p">Tak spieva hymna ŠK Blava, pomenovaného po potoku, ktorý tečie obcou. Muži hrajú ${esc(acc(A.leagueName))}${A.pos ? ` a po jeseni sú na ${A.pos}. mieste` : ''}${best ? `, ${esc(best.full)} ${/žiaci/i.test(best.full) ? 'sú' : 'je'} ${best.pos <= 3 ? `${best.pos}.` : `na ${best.pos}. mieste`} vo svojej súťaži` : ''}.</p>
       <p class="hero-cta"><a class="btn btn--blue" href="${R}zapasy/">Program a výsledky</a><a class="btn btn--line" href="${R}klub/">Klub od roku 1928</a></p>
     </div>
     <div class="hero-card">
@@ -419,7 +420,7 @@ ${A.table ? `<section class="sec sec--tint" aria-labelledby="liga-h"><div class=
   <div class="liga">
     <div>${tableHtml(A.table, R, { compact: true, caption: `<span class="sr">Výrez tabuľky okolo ŠK Blava 1928</span>` })}</div>
     <div class="liga-side">
-      <p class="big-pos"><span class="bp-n">${A.pos}.</span><span class="bp-l">miesto zo ${A.of} po ${lg.n} zápasoch, ${lg.w} výhier, ${lg.d} remíz, ${lg.l} prehier, skóre ${lg.gf}:${lg.ga}</span></p>
+      <p class="big-pos"><span class="bp-n">${A.pos}.</span><span class="bp-l">miesto ${zo(A.of)} po ${lg.n} ${lg.n === 1 ? 'zápase' : 'zápasoch'}, ${plural(lg.w, 'výhra', 'výhry', 'výhier')}, ${plural(lg.d, 'remíza', 'remízy', 'remíz')}, ${plural(lg.l, 'prehra', 'prehry', 'prehier')}, skóre ${lg.gf}:${lg.ga}</span></p>
       <div class="liga-row"><h3 class="h4">Forma</h3>${formHtml(A.slug)}</div>
       ${top.length ? `<div class="liga-row liga-row--list"><h3 class="h4">Strelci áčka</h3><ol class="scorers">${top.slice(0, 4).map(([n, g]) => `<li><span>${esc(n)}</span><b>${g}</b></li>`).join('')}</ol></div>` : ''}
     </div>
@@ -545,7 +546,7 @@ for (const t of teams) {
       const groups = POS.map(([k, h]) => [h, t.squad.athletes.filter((a) => (k ? a.pos === k : !POS.some(([x]) => x && x === a.pos)))]).filter(([, l]) => l.length);
       const nrCount = new Map(); for (const a of t.squad.athletes) nrCount.set(a.nr, (nrCount.get(a.nr) || 0) + 1);
       const nr = (a) => (a.nr !== '' && nrCount.get(a.nr) === 1 ? a.nr : '');
-      return `${pageHead({ title: t.full, sub: `${esc(t.leagueName)}${t.pos ? `, <b>${t.pos}. miesto</b> z ${t.of}` : ''}`, R, crumbs: [['timy/', 'Tímy'], [null, t.short]] })}
+      return `${pageHead({ title: t.full, sub: `${esc(t.leagueName)}${t.pos ? `, <b>${t.pos}. miesto</b> ${zo(t.of)}` : ''}`, R, crumbs: [['timy/', 'Tímy'], [null, t.short]] })}
 ${t.adult && foto?.hero ? `<figure class="team-photo">${igImg(R, 'hero', foto.hero.widths, { w: foto.hero.w, h: foto.hero.h, alt: foto.hero.alt, sizes: '(min-width: 1024px) calc(100vw - 256px), 100vw' })}<figcaption>${esc(t.full)} v sezóne ${SEASON}. Foto: <a href="${foto.hero.url}" rel="noopener">Instagram klubu</a></figcaption></figure>` : ''}
 <section class="sec sec--first"><div class="wrap team-top">
   ${pick ? `<div>${card(pick, R, { big: true })}</div>` : ''}
