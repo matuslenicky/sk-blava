@@ -227,7 +227,7 @@ a.stone:hover .stone-o span { text-decoration: underline; }
 .rib::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--blue); clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 50%, 100% 100%, 0 100%, 16px 50%); }
 .rib--l::before { background: #2b3f72; }
 .rib--d::before { background: #3f5aa6; }
-.rib--n::before { background: #8792ad; }
+.rib--n::before { background: #4a5670; }
 a.rib:hover::before { background: var(--blue-d); }
 a.rib:hover .rib-n { text-decoration: underline; text-decoration-color: var(--yellow); }
 .rib-d { display: flex; flex-direction: column; font: 800 .9375rem/1.15 var(--disp); color: var(--yellow); }
@@ -237,6 +237,8 @@ a.rib:hover .rib-n { text-decoration: underline; text-decoration-color: var(--ye
 .rib-k { font-size: .75rem; color: rgba(255, 255, 255, .82); }
 .rib-s { font: 800 1.35rem/1 var(--disp); color: var(--yellow); white-space: nowrap; }
 .rib-s small { font: 600 .75rem/1 var(--text); color: #fff; }
+/* úzky telefón: menšie okraje stuhy, aby sa názov súpera nedelil v strede slova */
+@media (max-width: 379.98px) { .rib { gap: 8px; padding: 8px 24px 8px 22px; } }
 .mr-team { display: inline-block; margin-right: 6px; padding: 1px 6px; border-radius: 3px; background: var(--yellow); color: var(--ink-b); font-size: .75rem; }
 .res-bg--w { background: var(--win); color: #fff; }
 .res-bg--d { background: var(--draw); color: #fff; }
