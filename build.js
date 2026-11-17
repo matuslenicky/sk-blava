@@ -71,7 +71,8 @@ const teams = sn.teams.map((t) => {
 // tímy bez zápasu v sezóne (napr. prihlásený B-tím bez súťaže) sa na webe neukazujú
 for (let i = teams.length - 1; i >= 0; i--) if (!sn.matches.some((m) => m.team === teams[i].slug)) teams.splice(i, 1);
 const bySlug = Object.fromEntries(teams.map((t) => [t.slug, t]));
-const matches = sn.matches.map((m) => {
+// kolá bez súpera (voľno) sa v zoznamoch nezobrazujú, inak by ostal prázdny riadok
+const matches = sn.matches.filter((m) => String(m.opponent || '').trim()).map((m) => {
   const t = bySlug[m.team];
   const past = m.played || m.date < TODAY;
   let gf = null, ga = null, res = null;
