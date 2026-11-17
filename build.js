@@ -283,22 +283,26 @@ function card(m, R, { big = false, label = '', self = false } = {}) {
 </article>`;
 }
 
-// riadok zápasu v zozname
+// zoznam zápasov: program ako kamene pozdĺž potoka Blava, výsledky na modrých stuhách s vystrihnutými koncami (ako na erbe)
 function matchRow(m, R, { showTeam = true } = {}) {
-  const right = m.score
-    ? `<span class="mr-score res-bg--${m.res}" title="${RES[m.res]}"><span class="sr">${RES[m.res]} </span>${esc(m.score)}</span>`
-    : m.past ? '<span class="mr-score mr-score--none">bez výsl.</span>' : `<span class="mr-time">${esc(m.time)}</span>`;
   const href = m.detail || !m.past ? ` href="${R}${m.url}"` : '';
   const tag = href ? 'a' : 'div';
-  return `<li class="mrow" data-team="${m.team}" data-where="${m.home ? 'doma' : 'vonku'}"><${tag} class="mrow-in"${href}>
-  <span class="mr-date"><span class="mr-day">${dDay(m.date)}</span><time datetime="${m.date}">${dShort(m.date)}</time></span>
-  ${logo(m.oppSpace, m.opponent, R, 30)}
-  <span class="mr-main"><span class="mr-opp">${esc(m.opponent)}</span>
-  <span class="mr-sub">${showTeam ? `<b class="mr-team">${esc(m.teamObj.short)}</b>` : ''}${m.home ? 'doma' : 'vonku'}, ${esc(m.cup ? m.comp : m.roundName || m.comp)}</span></span>
-  ${right}
+  const team = showTeam ? `${esc(m.teamObj.short)} · ` : '';
+  const comp = esc(m.cup ? m.comp : m.roundName || m.comp);
+  if (!m.past) {
+    return `<li class="mrow mrow--stone" data-team="${m.team}" data-where="${m.home ? 'doma' : 'vonku'}"><${tag} class="stone"${href}>
+  <span class="stone-d"><time datetime="${m.date}">${dDay(m.date)} ${dShort(m.date)}</time><b>${esc(m.time || '–')}</b></span>
+  <span class="stone-o">${logo(m.oppSpace, m.opponent, R, 26)}<span>${esc(m.opponent)}</span></span>
+  <span class="stone-k">${team}${m.home ? 'doma' : 'vonku'}, ${comp}</span>
+</${tag}></li>`;
+  }
+  return `<li class="mrow mrow--rib" data-team="${m.team}" data-where="${m.home ? 'doma' : 'vonku'}"><${tag} class="rib rib--${m.res || 'n'}"${href}>
+  <span class="rib-d"><time datetime="${m.date}">${dShort(m.date)}</time>${showTeam ? `<span>${esc(m.teamObj.short)}</span>` : ''}</span>
+  <span class="rib-o"><span class="rib-n">${esc(m.opponent)}</span><span class="rib-k">${m.home ? 'doma' : 'vonku'}, ${comp}</span></span>
+  <span class="rib-s">${m.score ? `<span class="sr">${RES[m.res]}, </span>${esc(m.score)}` : '<small>bez výsl.</small>'}</span>
 </${tag}></li>`;
 }
-const matchList = (list, R, opts) => `<ol class="mlist">${list.map((m) => matchRow(m, R, opts)).join('')}</ol>`;
+const matchList = (list, R, opts) => `<ol class="mlist ${list.length && list.every((m) => m.past) ? 'mlist--ribbons' : 'mlist--creek'}">${list.map((m) => matchRow(m, R, opts)).join('')}</ol>`;
 
 function tableHtml(tb, R, { compact = false, caption = '' } = {}) {
   let rows = tb.rows;
